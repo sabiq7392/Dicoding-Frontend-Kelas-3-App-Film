@@ -37,7 +37,6 @@ class SearchBar extends HTMLElement {
                 .wrapper-input-search {
                     display: flex;
                     place-items: center;
-                    gap: 2px;
                 }
 
                 input, button {
@@ -83,7 +82,6 @@ class SearchBar extends HTMLElement {
                 .d-none {
                     display: none!important;
                 }
-
             ${css.endStyle}
 
             ${css.html}
@@ -123,8 +121,8 @@ class SearchBar extends HTMLElement {
         });
 
         this.#focus({
-            container: container,
-            input: input
+            input: input,
+            container: container
         });
 
         this.#ruleStyleBasedScreen({ input: input });
@@ -137,27 +135,26 @@ class SearchBar extends HTMLElement {
 
         $window().onResize(() => {
             if (!$media("desktop")) {
-                hideInputWhenReachMediaPhone(input); 
+                if (!$query(input).containClass(["d-none"])) {
+                    hide({ what: input }); 
+                }
 
             } else {
-                $query(input)
-                    .removeClass(["d-none"]);
-
-                $query(triggered.logo)
-                    .removeClass(["d-none"]);
-
-                $query(triggered.buttonBack)
-                    .removeClass(["active"])
-                    .addClass(["d-none"]);
+                show({ what: input });
+                show({ what: triggered.logo });
+                hide({ what: triggered.buttonBack });
             }
         });
 
-        const hideInputWhenReachMediaPhone = (input) => {
-            if (!$query(input).containClass(["d-none"])) {
-                $query(input)
-                    .addClass(["d-none"])
-                    .removeClass(["active"]);
-            } 
+        const hide = ({ what }) => {
+            $query(what)
+                .addClass(["d-none"])
+                .removeClass(["active"]);
+        }
+
+        const show = ({ what }) => {
+            $query(what)
+                .removeClass(["d-none"]);
         }
     }
 
@@ -166,24 +163,31 @@ class SearchBar extends HTMLElement {
 
         $query(button).onClick(() => {
             if ($query(input).containClass(["d-none"])) {
-                $query(input)
-                    .removeClass(["d-none"])
-                    .addClass(["active"]);
-
-                $query(triggered.buttonBack)
-                    .removeClass(["d-none"])
-                    .addClass(["active"]);
-
-                $query(triggered.logo)
-                    .addClass(["d-none"]);
-
-                $query(triggered.navbarTop)
-                    .addClass(["active"]);
+                show({ what: input });
+                show({ what: triggered.buttonBack });
+                hide({ what: triggered.logo });
+                navbarChangeBackgroundColor();
             } 
         });
+
+        const show = ({ what }) => {
+            $query(what)
+                .removeClass(["d-none"])
+                .addClass(["active"]);
+        }
+
+        const hide = ({ what }) => {
+            $query(what)
+                .addClass(["d-none"]);
+        }
+
+        const navbarChangeBackgroundColor = () => {
+            $query(triggered.navbarTop)
+                .addClass(["active"]);
+        }
     }
 
-    #focus({ container, input }) {
+    #focus({ input, container }) {
         $query(input).onFocus(() => {
             container.style.outline = "1px solid #1768AC";
         })
@@ -198,6 +202,7 @@ class SearchBar extends HTMLElement {
             event.preventDefault();
             if (input.value) {
                 showSearchResult({ from: input });
+
                 this.#changeURLMenuNavbars({ 
                     navbar: "bottom",
                     url: "index.html" 

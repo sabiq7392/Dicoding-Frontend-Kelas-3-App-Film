@@ -32,14 +32,17 @@
     .card
         @include card()
         &__image
-            @include cardImage()
+            @include card-image()
             img
                 @include img()
 
         &__text-box
-            @include cardTextBox()
+            @include card-text-box()
             span
                 @include span()
+
+        &__overview
+            @include card-overview()
 
     .button-slider
         @include buttonSlider()

@@ -74,8 +74,6 @@ class Dom {
                 query.addEventListener("submit", listener, options);
                 return this;
             },
-
-
         }
     }
 
@@ -127,10 +125,6 @@ const $window = () => { return dom.$window() }
 
 const $media = (screen) => { return dom.$media(screen) }
     
-// const $newPage = ({ page, hero, floatContainer, searchResult }) => { 
-//     return dom.$newPage(page, hero, floatContainer, searchResult);
-// }
-
 const $countObjectSize = (obj) => {
     let size = 0;
     for (let key in obj) obj.hasOwnProperty(key) ? size++ : false;

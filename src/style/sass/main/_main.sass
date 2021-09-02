@@ -53,11 +53,19 @@ $width-image-movies-phone: 96px
     display: block
     position: relative
     transition: transform $transition-fast
-    &:hover
+    &:hover, &:focus
         color: $color-primary
-        transform: translateY(-10px)
+        @include media("tablet")
+            transform: translateY(-5px)
 
-@mixin cardImage()
+    &:hover .card__overview
+        display: block
+        animation: show $transition-standard  
+        @include media("tablet")
+            display: none
+            animation: none
+
+@mixin card-image()
     display: block
 
 @mixin img()
@@ -73,7 +81,7 @@ $width-image-movies-phone: 96px
         width: $width-image-movies-phone
         height: 144px
 
-@mixin cardTextBox()
+@mixin card-text-box()
     display: grid
     font-size: $font-size-paragraf
     @include media("tablet")
@@ -81,6 +89,31 @@ $width-image-movies-phone: 96px
 
     @include media("phone")
         font-size: $font-size-paragraf-phone
+
+@mixin card-overview()
+    display: none
+    background: rgba($color-black-secondary, .98)
+    height: 60%
+    padding: 1rem
+    color: $color-white
+
+    position: absolute
+    bottom: 70px
+
+    transition: $transition-standard
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0, 1)
+
+    $border-radius: 3%
+    border-radius: $border-radius
+    overflow: auto
+    @keyframes show
+        0%
+            bottom: 20px
+
+        100%
+            bottom: 70px
+    p 
+        font-size: 13px
 
 @mixin span()
     color: $color-white
@@ -131,7 +164,7 @@ $width-image-movies-phone: 96px
         font-size: calc( #{$font-size-icon-small} - .5rem )
     @include media("phone")
         font-size: calc( #{$font-size-icon-small} - .8rem )
-    
+
 @import "_hero.sass"
 @import "_movies.sass"
 

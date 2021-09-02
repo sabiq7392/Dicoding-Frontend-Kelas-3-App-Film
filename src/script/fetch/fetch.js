@@ -88,7 +88,11 @@ class Movies {
         let { id, backdrop_path, title, release_date, vote_average, poster_path } = movie;
         const container = $("#heroContainer");
 
-        this.#removeMovieDontHaveImage({ image: backdrop_path });
+        if (!backdrop_path && !poster_path) {
+            console.log(`${movie.title} dont show because dont have image`);
+            return false;
+        }
+
         changeImageHeroBasedScreen({ screen: "phone" });
         render();
 
@@ -111,7 +115,6 @@ class Movies {
                     </picture>
                 </section>
             `;
-
             firstSlideVisitPage();
         }
 
@@ -125,9 +128,13 @@ class Movies {
     }
 
     #cardSection({ container, movie }) {
-        const { id, poster_path, title, vote_average } = movie;
+        const { id, poster_path, title, vote_average, overview } = movie;
         
-        this.#removeMovieDontHaveImage({ image: poster_path });
+        if (!poster_path) {
+            console.log(`${movie.title} dont show because dont have image`);
+            return false;
+        }
+        // this.#removeMovieDontHaveImage({ image: poster_path });
         render();
         
         function render() {
@@ -140,15 +147,11 @@ class Movies {
                         <h4>${title}</h4>
                         <span><i class="bi bi-star-fill" style="color: #f5de50;"></i> ${vote_average}</span>
                     </div>
+                    <div class="card__overview">
+                        <p>${overview}</p>
+                    </div>
                 </section>    
             `;
-        }
-    }
-
-    #removeMovieDontHaveImage({ image }) {
-        if (!image) {
-            console.log(`some movie dont show because dont have backdrop path`);
-            return false;
         }
     }
 

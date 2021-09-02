@@ -1,5 +1,4 @@
 const css = {
-    sizeSearch: "35px",
     backgroundBody: "#101010",
     colorContainer: "#151515",
     colorNavbar: {
@@ -7,10 +6,10 @@ const css = {
         changed: "#202020",
         transparent: "rgba(0,0,0,0)"
     },
-    style: "<style>",
     endStyle: "</style>",
-    html: "<!--- HTML --->",
     endHtml: "<!--- ENDHTML --->",
+    endMedia: `}`,
+    html: "<!--- HTML --->",
     media: ({ screen }) => {
         switch (screen) {
             case "phone":
@@ -30,7 +29,8 @@ const css = {
         } 
         return `@media only screen and (${screen}) {`;
     },
-    endMedia: `}`,
+    sizeSearch: "35px",
+    style: "<style>",
 }
 
 export { css };

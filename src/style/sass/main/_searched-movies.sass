@@ -47,7 +47,6 @@
         display: grid
         grid-template-columns: repeat(auto-fit, minmax($width-image-movies, 1fr))
         position: relative
-        // flex-wrap: wrap
         @include media("tablet")
             grid-template-columns: repeat(auto-fit, minmax($width-image-movies-tablet, 1fr))
         @include media("phone")
@@ -56,17 +55,19 @@
     .card
         @include card()
         width: 100%
-
         &__image
-            @include cardImage()
+            @include card-image()
             width: 100%
             img
                 @include img()
                 width: 100%!important
 
         &__text-box
-            @include cardTextBox
+            @include card-text-box
             h1 
                 white-space: normal
             span
                 @include span()
+
+        &__overview
+            @include card-overview()

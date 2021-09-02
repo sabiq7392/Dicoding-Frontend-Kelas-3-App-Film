@@ -8,7 +8,6 @@ class Slider {
 
         this.btnNext = btnNext;
         this.btnPrevious = btnPrevious;
-        // this.btnChoose = btnChoose;
 
         this.position = 0;
         this.count = 0;
@@ -74,8 +73,6 @@ class Slider {
                     speed: speed
                 });
 
-                console.log(this.position);
-
             } else {
                 console.log(this.container);
             }
@@ -125,7 +122,7 @@ class Slider {
             let previousSlide = this.count - 1;
             let animation = slide;
 
-            this.#processContentHero({
+            this.#displayContentHero({
                 show: nextSlide,
                 hide: previousSlide,
                 animation: animation
@@ -137,7 +134,7 @@ class Slider {
             let previousSlide = this.count;
             let animation = slide;
 
-            this.#processContentHero({
+            this.#displayContentHero({
                 show: previousSlide,
                 hide: nextSlide,
                 animation: animation
@@ -145,7 +142,7 @@ class Slider {
         }
     }
 
-    #processContentHero({ show, hide, animation }) {
+    #displayContentHero({ show, hide, animation }) {
         $query(this.containerContents[show])
             .addClass(["active", animation]);
 
