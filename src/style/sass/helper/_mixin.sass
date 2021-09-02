@@ -1,0 +1,31 @@
+@import "_variables.sass"
+@import "_media-quaries.sass"
+
+@mixin center-display($display)
+    display: $display
+    place-items: center
+
+@mixin center-vertical($display)
+    display: $display
+    align-items: center
+
+@mixin center-horizontal($display)
+    display: $display
+    justify-content: center
+
+@mixin center-absolute
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+
+@mixin whatPosition($position, $where)
+    position: $position
+    @if $where == endOfTopRightCorner
+        top: 0
+        right: 0
+    @else if $where == endOfTopLeftCorner
+        top: 0
+        left: 0
+
+

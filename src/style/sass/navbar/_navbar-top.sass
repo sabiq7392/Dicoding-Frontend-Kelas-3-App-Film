@@ -1,0 +1,95 @@
+.navbar-top
+    @include navbar()
+    width: 100vw
+    background: $background-menu
+    transition: background $transition-standard
+    top: 0
+    @include media("phone")
+        background: none
+    &.active
+        $color-black-secondary-active: $color-black-secondary-hover
+        background: $color-black-secondary-active!important
+        
+    nav
+        $gap-navbar: 2rem
+        @include nav()
+        max-width: 1920px
+        margin: $margin-center
+
+        .navbar-container
+            $this-padding-container-tablet: 1.5rem
+            $this-padding-container-phone: .5rem
+
+            display: flex
+            justify-content: space-between
+            align-items: center
+            column-gap: $gap-navbar
+            padding: 0 $padding-container
+            @include media("tablet")
+                padding: 0 $this-padding-container-tablet
+
+            @include media("phone")
+                padding: 0 $this-padding-container-phone
+                column-gap: 0
+
+        .logo
+            @include center-display(grid)
+            a
+                border-bottom: none!important
+                &:hover
+                    background: none!important
+
+            svg
+                $width: 6rem
+
+                width: $width
+                @include media("tablet")
+                    width: calc( #{$width} - 1rem )
+                @include media("phone")
+                    width: calc( #{$width} - 1.3rem )
+
+
+
+        ul
+            @include center-display(flex)
+            column-gap: $gap-navbar
+            @include media("tablet")
+                display: none
+
+
+
+        li
+            @include center-display(flex)
+
+        a
+            @include a() 
+            @include center-display(flex)
+            border-bottom: 2px solid $color-transparent
+            font-size: 14px
+            padding: 8px
+            @include media("tablet")
+                font-size: $font-size-paragraf-tablet
+
+        .button-back
+            $size-icon: 20px
+            $size-button: 35px
+            height: $size-button
+            width: $size-button
+            cursor: pointer
+            background: $background-transparent
+            font-size: $size-icon
+            border-radius: 50%
+            &.active
+                display: block
+            &:hover, &:focus
+                background: $background-menu
+                
+            i
+                color: $color-white 
+                &:hover
+                    color: $color-primary
+                    
+        .search-bar
+            padding: .5rem
+
+
