@@ -15,18 +15,20 @@
         @include nav()
         max-width: 1920px
         margin: $margin-center
-
         .navbar-container
             $this-padding-container-tablet: 1.5rem
             $this-padding-container-phone: .5rem
-
-            display: flex
-            justify-content: space-between
+            
+            // display: flex
+            // justify-content: space-between
+            display: grid
+            grid-template-columns: 1fr 1fr 1fr
             align-items: center
             column-gap: $gap-navbar
             padding: 0 $padding-container
             @include media("tablet")
                 padding: 0 $this-padding-container-tablet
+                grid-template-columns: 1fr 1fr
 
             @include media("phone")
                 padding: 0 $this-padding-container-phone
@@ -34,29 +36,28 @@
 
         .logo
             @include center-display(grid)
+            margin-right: auto
             a
                 border-bottom: none!important
                 &:hover
                     background: none!important
 
-            svg
+            img
                 $width: 6rem
-
                 width: $width
                 @include media("tablet")
                     width: calc( #{$width} - 1rem )
                 @include media("phone")
                     width: calc( #{$width} - 1.3rem )
 
-
-
         ul
             @include center-display(flex)
-            column-gap: $gap-navbar
+            column-gap: $gap-1
+            min-width: 345px
+            margin: $margin-center
+
             @include media("tablet")
                 display: none
-
-
 
         li
             @include center-display(flex)
@@ -91,5 +92,6 @@
                     
         .search-bar
             padding: .5rem
+            margin-left: auto
 
 

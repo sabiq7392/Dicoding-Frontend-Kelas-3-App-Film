@@ -31,7 +31,7 @@ $width-image-movies-phone: 96px
 
 @mixin headerH1()
     font-family: $font-title
-    font-size: calc( #{$font-size-title} - .2rem )
+    font-size: $font-size-title
     font-weight: 600
     @include media("tablet")
         font-size: $font-size-title-tablet
@@ -49,7 +49,6 @@ $width-image-movies-phone: 96px
 
 @mixin card()
     $z-not-important: 1
-
     cursor: pointer
     display: block
     position: relative
@@ -94,7 +93,7 @@ $width-image-movies-phone: 96px
         font-size: $font-size-paragraf-phone
 
 @mixin buttonSlider()
-    $position-button-top-bottom: 3.7rem
+    $position-button-top-bottom: 3.5rem
     $position-button-left-right: 0
     $width: 50px
 
@@ -106,12 +105,12 @@ $width-image-movies-phone: 96px
     z-index: 95
     cursor: pointer
     @include media("tablet")
-        top: calc( #{$position-button-top-bottom} - .1rem )
+        top: calc( #{$position-button-top-bottom} - .6rem )
         width: 40px
         height: 248px
 
     @include media("phone")
-        top: calc( #{$position-button-top-bottom} - 0.75rem )
+        top: calc( #{$position-button-top-bottom} - 1.1rem )
         width: 30px
         height: 148px
         

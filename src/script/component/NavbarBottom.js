@@ -1,3 +1,5 @@
+"use strict";
+
 class NavbarBottom extends HTMLElement {
     connectedCallback() {
         this.#render();

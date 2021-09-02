@@ -19,6 +19,21 @@ class PageControl {
     }
     
     static isSearchPage() { return $("html").getAttribute("id") == "searchPage" }
+
+    static renderContainerSlider({ title, header, slider, container }) {
+        return `
+            <div id="${slider.itID}" class="slider-overflow ${slider.itClass}">
+                <header class="${header}">
+                    <h1>${title}</h1>
+                </header>
+
+                <div id="${container.itID}" class="container ${container.itClass}"></div>
+
+                <button class="button-slider button-previous"><i class="bi bi-caret-left"></i></button>
+                <button class="button-slider button-next"><i class="bi bi-caret-right"></i></button>
+            </div>
+        `;
+    }
 }
 
 export { PageControl };

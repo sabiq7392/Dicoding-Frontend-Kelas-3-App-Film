@@ -64,9 +64,10 @@
             top: 50%
             left: calc( #{$position-breakpoint-desktop} * 2 )
             transform: translateY(-50%)
-            width: 550px
+            max-width: 450px
+            width: 100%
             background: rgba($background-body, 0.5)
-            padding: 3rem
+            padding: 2rem
             box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5)
             transition: background $transition-slow
             border-radius: $border-radius-standard
@@ -79,14 +80,6 @@
 
             @include media("phone")
                 display: none
-                // top: 75%
-                // left: calc(50% - calc( #{$scrollbar-size} / 2 ))
-                // transform: translate(-50%, -50%)
-                // padding: 1.5rem
-                // width: 80vw
-                // background: rgba($color-black-primary, 0.7)
-                // box-shadow: none!important
-
             &:hover
                 background: rgba($background-body, 0.8)
 
@@ -101,7 +94,7 @@
                 font-size: $font-size-title-phone
 
         &__voting
-            $font-size: 1.4rem
+            $font-size: 1.2rem
             font-size: $font-size
             @include media("tablet")
                 font-size: calc( #{$font-size} - .3rem )
@@ -109,7 +102,7 @@
                 font-size: calc(#{$font-size} - .4rem)
 
         time
-            color: white
+            color: $color-white
 
         &.active
             display: block!important

@@ -3,7 +3,6 @@ import { BASE_URL, IMG_URL, API_KEY, SEARCH, QUERY } from "../../config.js";
 import { PageControl } from "../helper/pageControl.js";
 "use strict";
 
-// https://api.themoviedb.org/3/movie/top_rated?api_key=58667a2c88d7bc5092d37e78e46c33f4
 class Movies {
     async get({ type, keyword }) {
         try {
@@ -32,7 +31,6 @@ class Movies {
 
     #render(movies, type) {
         if (type === "search") {
-            console.log("hai")
             const hide = "d-none";
             const show = null;
 
@@ -157,7 +155,7 @@ class Movies {
     #errorNoResult({ error }) {
         if (error == 0 || error == null || error == undefined) {
             const searchResult = $("#searchResultWrapper");
-            return searchResult.innerHTML += `
+            searchResult.innerHTML += `
                 <h2>There is no result or similiar like that.</h2>
             `;
         }

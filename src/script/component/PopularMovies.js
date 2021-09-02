@@ -1,6 +1,7 @@
 import { $ } from "../helper/helper.js";
 import { Slider } from "../dom/slider.js";
 import { Movies } from "../fetch/fetch.js";
+import { PageControl } from "../helper/pageControl.js";
 "use strict";
 
 class PopularMovies extends HTMLElement {
@@ -9,18 +10,18 @@ class PopularMovies extends HTMLElement {
     }
 
     async #render() {
-        this.innerHTML = `
-            <div id="popularMoviesSlider" class="popular-movies slider-overflow">
-                <header class="popular-movies__title left-line">
-                    <h1>Popular Movies</h1>
-                </header>
-
-                <div id="popularMoviesContainer" class="popular-movies__container container"></div>
-
-                <button class="button-slider button-previous"><i class="bi bi-caret-left"></i></button>
-                <button class="button-slider button-next"><i class="bi bi-caret-right"></i></button>
-            </div>
-        `;
+        this.innerHTML = PageControl.renderContainerSlider({
+            title: "Popular Movies",
+            header: "popular-movies__title",
+            slider: {
+                itID: "popularMoviesSlider",
+                itClass: "popular-movies"
+            },
+            container: {
+                itID: "popularMoviesContainer",
+                itClass: "popular-movies__container"
+            }
+        })
         this.#slider()
         this.#movies()
     }

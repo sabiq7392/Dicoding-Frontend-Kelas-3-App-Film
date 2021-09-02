@@ -1,7 +1,5 @@
-import { BASE_URL, IMG_URL, API_KEY, SEARCH, QUERY } from "../../config.js";
-import { $, $query, $window, $media } from "../helper/helper.js";
+import { $, $all, $query, $window, $media } from "../helper/helper.js";
 import { css } from "../helper/cssShadow.js";
-// import { PageControl } from "../helper/pageControl.js";
 import { NavbarTop } from "./NavbarTop.js";
 import { Movies } from "../fetch/fetch.js";
 "use strict";
@@ -92,7 +90,7 @@ class SearchBar extends HTMLElement {
             <div id="container" class="container" style="background: ${css.colorContainer}; border-radius: ${css.sizeSearch};">
                 <form id="formSearch" action="index.html">
                     <div class="wrapper-input-search">
-                        <input id="inputSearch" type="search">
+                        <input id="inputSearch" type="search" placeholder="Search Movie">
                         <button id="submitSearch" type="submit">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -198,11 +196,21 @@ class SearchBar extends HTMLElement {
     #submit({ form, input }) {
         $query(form).onSubmit((event) => {
             event.preventDefault();
-            input.value ? showSearchResult({ from: input }) : console.log(input.value);
+            if (input.value) {
+                showSearchResult({ from: input });
+                this.#changeURLMenuNavbars({ 
+                    navbar: "bottom",
+                    url: "index.html" 
+                });
+
+                this.#changeURLMenuNavbars({
+                    navbar: "top",
+                    url: "index.html"
+                });
+            }
         });
 
         const showSearchResult = ({ from }) => {
-            // this.#getMovies({ keyword: from.value });
             this.#movies({ keyword: from.value });
             $query(this.triggered.navbarTop).addClass(["active"]);
         }
@@ -217,76 +225,16 @@ class SearchBar extends HTMLElement {
     }
 
     #ruleStyleBasedScreen({ input }) {
-        if (!$media("desktop")) {
-            $query(input).addClass(["d-none"]);
-
-        } else {
-            $query(input).removeClass(["d-none"]);
-        }
+        !$media("desktop") ? $query(input).addClass(["d-none"]) : $query(input).removeClass(["d-none"]);
     }
 
-    // async #getMovies({ keyword }) {
-    //     try {
-    //         const response = await fetch(this.#url(keyword), { method: "GET" });
-    //         const responseJson = await response.json();
-    //         const movies = responseJson.results;
-    //         this.#renderMovies(movies);
-
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
-
-    // #url(keyword) { return `${BASE_URL}/${SEARCH}?${API_KEY}&${QUERY}=${keyword}` }
-
-    // #renderMovies(movies) {
-    //     PageControl.newPage({
-    //         page: "searchPage",
-    //         hero: this.hide,
-    //         floatContainer: this.hide,
-    //         searchResult: this.show
-    //     });
-        
-    //     this.#errorNoResult({ error: movies });
-
-    //     movies.forEach(movie => {
-    //         this.#cardSection(movie);
-    //     });
-    // }
-
-    // #cardSection(movie) {
-    //     const { id, poster_path, title, vote_average } = movie;
-
-    //     this.#skipMovieDontHaveImage({ image: poster_path });
-
-    //     $("#searchResultContainer").innerHTML += `
-    //         <section id="${id}" class="card">
-    //             <picture class="card__image">
-    //                 <img src="${IMG_URL}/${poster_path}" alt="${title}">
-    //             </picture>
-    //             <div class="card__text-box">
-    //                 <h4>${title}</h4>
-    //                 <span><i class="bi bi-star-fill" style="color: #f5de50;"></i> ${vote_average}</span>
-    //             </div>
-    //         </section>    
-    //     `;
-    // }
-
-    // #skipMovieDontHaveImage({ image }) {
-    //     if (!image) {
-    //         console.log(`some movie dont show because dont have backdrop path`);
-    //         return false;
-    //     }
-    // }
-
-    // #errorNoResult({ error }) {
-    //     if (error == 0 || error == null || error == undefined) {
-    //         const searchResult = $("#searchResultWrapper");
-    //         return searchResult.innerHTML += `
-    //             <h2>There is no result or similiar like that.</h2>
-    //         `;
-    //     }
-    // }
+    #changeURLMenuNavbars({ navbar, url }){
+        let menus;
+        navbar == "bottom" ? menus = $all("#navbarMenuBottom a") : menus = $all("#navbarMenuTop a");
+        for (let menu of menus) {
+            menu.setAttribute("href", url)
+        }
+    }
 }
 
 customElements.define("search-bar", SearchBar);     
