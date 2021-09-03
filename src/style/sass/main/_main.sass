@@ -40,12 +40,12 @@ $width-image-movies-phone: 96px
         font-size: $font-size-title-phone
 
 @mixin container()
-    grid-gap: $gap-1
+    gap: $gap-1
     padding: 1rem 0
     @include media("tablet")
-        grid-gap: calc( #{$gap-1} - .4rem )
+        gap: calc( #{$gap-1} - .4rem )
     @include media("phone")
-        grid-gap: calc( #{$gap-1} - .5rem )
+        gap: calc( #{$gap-1} - .5rem )
 
 @mixin card()
     $z-not-important: 1
@@ -82,7 +82,8 @@ $width-image-movies-phone: 96px
         height: 144px
 
 @mixin card-text-box()
-    display: grid
+    display: flex
+    flex-direction: column
     font-size: $font-size-paragraf
     @include media("tablet")
         font-size: $font-size-paragraf-tablet

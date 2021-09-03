@@ -1,26 +1,31 @@
 .float-container
-    display: grid
-    grid-gap: 75px
+    display: flex
+    gap: 75px
+    flex-direction: column;
+
     max-width: 1920px
     width: 100vw
     margin: $margin-center
+
     position: relative
     top: -200px
     color: $color-white
     padding: $padding-container
     @include media("tablet")
         top: -150px
-        grid-gap: 50px
+        gap: 50px
         padding: $padding-container-tablet
         padding-bottom: 5rem!important 
 
     @include media("phone")
         top: 0
-        grid-gap: 25px
+        gap: 25px
         padding: $padding-container-phone
 
 .slider-overflow
-    display: grid
+    display: flex
+    flex-direction: column
+
     z-index: $z-two
     position: relative
     header h1
