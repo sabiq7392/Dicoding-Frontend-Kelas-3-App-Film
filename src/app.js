@@ -1,3 +1,5 @@
+import "regenerator-runtime";
+
 window.addEventListener("load", () => {
     import("./script/view/main.js");
     import("./style/css/index.css");

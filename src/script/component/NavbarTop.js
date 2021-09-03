@@ -1,6 +1,7 @@
 import { $, $query, $media } from "../helper/helper.js";
 import { css } from "../helper/cssShadow.js";
 import { PageControl } from "../helper/pageControl.js";
+import logoImg  from '../../img/mame-logo.svg';
 
 "use strict";
 
@@ -9,7 +10,6 @@ class NavbarTop extends HTMLElement {
         super();
         this.navbar = $("#navbarTop");
         this.height = $("#navbarTop").offsetHeight;
-        this.src = this.getAttribute("src") || null;
     }
 
     connectedCallback() {
@@ -22,7 +22,7 @@ class NavbarTop extends HTMLElement {
                 <div id="wrapper" class="navbar-container">
                     <div class="logo">
                         <a href="index.html">
-                            <img src="src/img/mame-logo.svg">
+                            <img src="${logoImg}">
                         </a>
                     </div>
                     
@@ -66,27 +66,21 @@ class NavbarTop extends HTMLElement {
             navbarTop: $("#navbarTop"),
             input: inputSearch
         };
-        const hide = "d-none";
-        const show = null;
+
 
         $query(button).onClick(() => {
             if ($query(button).containClass(["active"])) {
-                $query(button)
-                    .removeClass(["active"])
-                    .addClass(["d-none"]);
 
-                $query(triggered.logo)
-                    .removeClass(["d-none"]);
-
-                $query(triggered.navbarTop)
-                    .removeClass(["active"]);
-
-                $query(triggered.input)
-                    .removeClass(["active"])
-                    .addClass(["d-none"]);
+                hide({ what: button });
+                hide({ what: triggered.input });
+                show({ what: triggered.logo });
+                changeBackgroundColorNavbar();
             } 
 
             if (PageControl.isSearchPage()) {
+                const hide = "d-none";
+                const show = null;
+
                 PageControl.newPage({
                     page: "mainPage",
                     hero: show,
@@ -95,6 +89,22 @@ class NavbarTop extends HTMLElement {
                 });
             }
         });
+
+        const show = ({ what }) => {
+            $query(what)
+                .removeClass(["d-none"]);
+        }
+
+        const hide = ({ what }) => {
+            $query(what)
+                .removeClass(["active"])
+                .addClass(["d-none"]);
+        }
+
+        const changeBackgroundColorNavbar = () => {
+            $query(triggered.navbarTop)
+                .removeClass(["active"]);
+        }
     }
 }
 

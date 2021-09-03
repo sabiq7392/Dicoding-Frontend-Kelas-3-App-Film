@@ -166,7 +166,7 @@ class SearchBar extends HTMLElement {
                 show({ what: input });
                 show({ what: triggered.buttonBack });
                 hide({ what: triggered.logo });
-                navbarChangeBackgroundColor();
+                changeBackgroundColorNavbar();
             } 
         });
 
@@ -181,7 +181,7 @@ class SearchBar extends HTMLElement {
                 .addClass(["d-none"]);
         }
 
-        const navbarChangeBackgroundColor = () => {
+        const changeBackgroundColorNavbar = () => {
             $query(triggered.navbarTop)
                 .addClass(["active"]);
         }
