@@ -125,10 +125,10 @@ const $window = () => { return dom.$window() }
 
 const $media = (screen) => { return dom.$media(screen) }
     
-const $countObjectSize = (obj) => {
-    let size = 0;
-    for (let key in obj) obj.hasOwnProperty(key) ? size++ : false;
-    return size;
-};
+// const $countObjectSize = (obj) => {
+//     let size = 0;
+//     for (let key in obj) obj.hasOwnProperty(key) ? size++ : false;
+//     return size;
+// };
 
-export { dom, $, $query, $all, $window, $media, $countObjectSize };
+export { dom, $, $query, $all, $window, $media };
