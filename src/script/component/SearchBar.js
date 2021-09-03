@@ -235,10 +235,8 @@ class SearchBar extends HTMLElement {
 
     #changeURLMenuNavbars({ navbar, url }){
         let menus;
-        navbar == "bottom" ? menus = $all("#navbarMenuBottom a") : menus = $all("#navbarMenuTop a");
-        for (let menu of menus) {
-            menu.setAttribute("href", url)
-        }
+        navbar === "bottom" ? menus = $all("#navbarMenuBottom a") : menus = $all("#navbarMenuTop a");
+        menus.forEach(menu => menu.setAttribute("href", url));
     }
 }
 

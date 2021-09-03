@@ -22,10 +22,6 @@ const css = {
             case "desktop":
                 screen = `min-width: 1024px`;
                 break;
-            
-            default:
-                screen = screen;
-                break;
         } 
         return `@media only screen and (${screen}) {`;
     },

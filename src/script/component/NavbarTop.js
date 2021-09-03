@@ -22,7 +22,7 @@ class NavbarTop extends HTMLElement {
                 <div id="wrapper" class="navbar-container">
                     <div class="logo">
                         <a href="index.html">
-                            <img src="${logoImg}">
+                            <img src="${logoImg}" alt="MAME">
                         </a>
                     </div>
                     
